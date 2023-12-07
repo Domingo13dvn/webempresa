@@ -5,7 +5,7 @@
 	{% load static %}
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>La Sabrosa</title>
+	<title>{% block title %}  {% endblock %}</title>
 	<link rel="shortcut icon" href="{% static 'core/img/la-sabrosa-img.ico' %}" />
 
 	<link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
@@ -93,9 +93,14 @@
 					</a>
 				</p>
 				<p class="col-auto link">
-					<a href="{% url 'other' %}" class="link">Política de privacidad</a> ·
-					<a href="{% url 'other' %}" class="link">Aviso legal</a> ·
-					<a href="{% url 'other' %}" class="link">Cookies</a>
+					
+					{% load pages_extra %}
+					{% get_pages as pages %}
+					{% for page in pages %}
+						<a href="{% url 'other' page.id %}" class="link">{{page.title}}</a>{% if not forloop.last %} - {% endif %}
+					{% endfor %}
+
+				
 				</p>
 				<p class="col-auto copy">copyright &copy; La Sabrosa 2023</p>
 			</div>

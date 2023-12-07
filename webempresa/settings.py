@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'services.apps.ServicesConfig',
     'contact',
     'blog',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
